@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Opremca - Furniture & Renovations</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; font-family: Arial, sans-serif; }
+  html { scroll-behavior: smooth; }
+
+  body { background:#fff; color:#333; }
+
+  /* Header */
+  header { position: fixed; top:0; width:100%; background:rgba(255,255,255,0.95); padding:20px; box-shadow:0 2px 5px rgba(0,0,0,0.1); z-index:1000; display:flex; justify-content:space-between; align-items:center; transition: all 0.3s ease; }
+  header.scrolled { padding:10px 20px; box-shadow:0 4px 8px rgba(0,0,0,0.15); }
+  header nav a { margin-left:20px; text-decoration:none; color:#333; font-weight:bold; }
+
+  /* Hero */
+  .hero { height:100vh; display:flex; justify-content:center; align-items:center; color:white; text-shadow:0 2px 5px rgba(0,0,0,0.7); font-size:3em; position: relative; overflow: hidden; }
+  .slide { position:absolute; width:100%; height:100%; background-size:cover; background-position:center; opacity:0; transition: opacity 1s ease-in-out; }
+  .slide.active { opacity:1; }
+
+  /* Sections */
+  section { padding:100px 20px; max-width:1200px; margin:0 auto; }
+  h2 { margin-bottom:40px; text-align:center; }
+
+  /* Services */
+  .services { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+  .services .card { background:#f5f5f5; padding:20px; width:300px; text-align:center; border-radius:10px; box-shadow:0 2px 5px rgba(0,0,0,0.1); }
+  .services .card img { width:100%; height:200px; object-fit:cover; border-radius:10px; margin-bottom:15px; }
+
+  /* Portfolio */
+  .portfolio { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
+  .portfolio .card { background:#f5f5f5; width:300px; height:250px; border-radius:10px; overflow:hidden; position:relative; cursor:pointer; box-shadow:0 2px 5px rgba(0,0,0,0.1); transition: transform 0.3s ease; }
+  .portfolio .card img { width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease; }
+  .portfolio .card .overlay { position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); color:white; display:flex; justify-content:center; align-items:center; opacity:0; transition: opacity 0.3s ease; font-size:1.2em; text-align:center; padding:10px; }
+  .portfolio .card:hover img { transform: scale(1.1); }
+  .portfolio .card:hover .overlay { opacity:1; }
+
+  /* Contact */
+  #contact p { margin:10px 0; text-align:center; }
+
+  /* Footer */
+  footer { background:#222; color:white; text-align:center; padding:40px 20px; margin-top:50px; }
+
+  @media(max-width:768px) {
+    .services, .portfolio { flex-direction:column; align-items:center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">Opremca</div>
+  <nav>
+    <a href="#services">Services</a>
+    <a href="#portfolio">Portfolio</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="hero">
+  <div class="slide active" style="background-image:url('https://via.placeholder.com/1500x800?text=Slide+1');"></div>
+  <div class="slide" style="background-image:url('https://via.placeholder.com/1500x800?text=Slide+2');"></div>
+  <div class="slide" style="background-image:url('https://via.placeholder.com/1500x800?text=Slide+3');"></div>
+  <div style="position:relative; z-index:2;">Opremca</div>
+</div>
+
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Service 1">
+      <h3>Service 1</h3>
+      <p>Placeholder description for your service.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Service 2">
+      <h3>Service 2</h3>
+      <p>Placeholder description for your service.</p>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x200" alt="Service 3">
+      <h3>Service 3</h3>
+      <p>Placeholder description for your service.</p>
+    </div>
+  </div>
+</section>
+
+<section id="portfolio">
+  <h2>Portfolio</h2>
+  <div class="portfolio">
+    <div class="card">
+      <img src="https://via.placeholder.com/300x250" alt="Project 1">
+      <div class="overlay">Project 1</div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x250" alt="Project 2">
+      <div class="overlay">Project 2</div>
+    </div>
+    <div class="card">
+      <img src="https://via.placeholder.com/300x250" alt="Project 3">
+      <div class="overlay">Project 3</div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact</h2>
+  <p>Email: info@opremca.com | Phone: +386 40 000 000</p>
+  <p>Address: Your Street 1, City, Slovenia</p>
+</section>
+
+<footer>
+  &copy; 2025 Opremca. All rights reserved.
+</footer>
+
+<script>
+  // Slideshow
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+
+  function nextSlide() {
+    slides[current].classList.remove('active');
+    current = (current+1) % slides.length;
+    slides[current].classList.add('active');
+  }
+  setInterval(nextSlide, 4000);
+
+  // Header scroll animation
+  const header = document.querySelector('header');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+  });
+</script>
+
+</body>
+</html>
